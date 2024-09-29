@@ -29,10 +29,10 @@ preview:
     landscape photographer, creating images for a diverse range of requests,
     from online media to printed artwork.
   image: /images/01.jpg
-  image_alt: Vanessa Marley's picture
+  image_alt: Isaac Benaka's picture
   cta_button: Get in touch
   cta_button_link: "#contact"
-  works_button: See my works
+  works_button: Check out my projects
   works_button_link: "#projects"
 
 # Any extra CloudCannon inputs configuration to apply to the blueprint
