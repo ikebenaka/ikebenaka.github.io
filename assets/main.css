@@ -3397,7 +3397,7 @@
   }
   .c-button--primary {
     color: #fff;
-    background: linear-gradient(90deg, #1495a7 0%, #003687 167%);
+    background: linear-gradient(90deg, #67764d 0%, #294630 167%);
   }
   .c-button--primary:hover {
     color: #fff !important;
