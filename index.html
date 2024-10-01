@@ -50,22 +50,44 @@
         </div>
 
         <nav class="main-nav">
-                    <div class="main-nav__box">
-                      <ul class="nav__list list-reset">
-                        <li class="nav__item">
-                          <a href="/" class="nav__link active-link">Home</a>
-                        </li>
-                        <li class="nav__item">
-                          <a href="/projects/" class="nav__link">Projects</a>
-                        </li>
-                        <li class="nav__item">
-                          <a href="/blog/" class="nav__link">Blog</a>
-                        </li>
-                        <li class="nav__item">
-                          <a href="https://docs.google.com/document/d/1LmZufcFeW-DfJyBloKpJLVB7JkDRp4bo" class="nav__link">Resume</a>
-                        </li>
-                      </ul>
-                    </div>
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link active-link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="https://docs.google.com/document/d/1LmZufcFeW-DfJyBloKpJLVB7JkDRp4bo" class="nav__link">Resume</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
 
           <!--bookshop-live meta(version="3.9.0" baseurl="" title="Vonge") -->
 <!--bookshop-live name(social-link.jekyll.html) params() context() -->
@@ -633,7 +655,7 @@
   
       const head = document.querySelector('head');
       const script = document.createElement('script');
-      script.src = `/_cloudcannon/bookshop-live.js`;
+      script.src = /_cloudcannon/bookshop-live.js;
       script.onload = function() {
         window.bookshopLive = new window.BookshopLive({
           remoteGlobals: [],
