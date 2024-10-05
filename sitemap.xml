@@ -2,19 +2,19 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/about/</loc>
-<lastmod>2024-10-02T01:34:58+00:00</lastmod>
+<lastmod>2024-10-05T18:28:57+00:00</lastmod>
 </url>
 <url>
 <loc>/blog/</loc>
-<lastmod>2024-10-02T01:34:58+00:00</lastmod>
+<lastmod>2024-10-05T18:28:57+00:00</lastmod>
 </url>
 <url>
 <loc>/</loc>
-<lastmod>2024-10-02T01:34:58+00:00</lastmod>
+<lastmod>2024-10-05T18:28:57+00:00</lastmod>
 </url>
 <url>
 <loc>/projects/</loc>
-<lastmod>2024-10-02T01:34:58+00:00</lastmod>
+<lastmod>2024-10-05T18:28:57+00:00</lastmod>
 </url>
 <url>
 <loc>/project/noaa-fisheries-scientist-interview-series</loc>
@@ -34,6 +34,6 @@
 </url>
 <url>
 <loc>/_pages/gallery.html</loc>
-<lastmod>2024-10-02T01:20:42+00:00</lastmod>
+<lastmod>2024-10-05T18:28:45+00:00</lastmod>
 </url>
 </urlset>
