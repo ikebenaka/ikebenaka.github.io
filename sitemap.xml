@@ -2,19 +2,19 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/about/</loc>
-<lastmod>2024-10-06T00:28:15+00:00</lastmod>
+<lastmod>2024-10-06T00:33:53+00:00</lastmod>
 </url>
 <url>
 <loc>/blog/</loc>
-<lastmod>2024-10-06T00:28:15+00:00</lastmod>
+<lastmod>2024-10-06T00:33:53+00:00</lastmod>
 </url>
 <url>
 <loc>/</loc>
-<lastmod>2024-10-06T00:28:15+00:00</lastmod>
+<lastmod>2024-10-06T00:33:53+00:00</lastmod>
 </url>
 <url>
 <loc>/projects/</loc>
-<lastmod>2024-10-06T00:28:15+00:00</lastmod>
+<lastmod>2024-10-06T00:33:53+00:00</lastmod>
 </url>
 <url>
 <loc>/blog/big-eyes</loc>
@@ -23,6 +23,9 @@
 <url>
 <loc>/project/noaa-fisheries-scientist-interview-series</loc>
 <lastmod>2023-03-27T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>/schemas/gallery.html</loc>
 </url>
 <url>
 <loc>/schemas/page.html</loc>
