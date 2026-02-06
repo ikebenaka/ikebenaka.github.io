@@ -2,6 +2,16 @@
 
 This site is a Jekyll site that stores all editable content in a few clear locations.
 
+## Project Structure (Source Of Truth)
+
+All source content lives under:
+- `/Users/isaacbenaka/Documents/GitHub/ikebenaka.github.io/site/`
+
+Design components live under:
+- `/Users/isaacbenaka/Documents/GitHub/ikebenaka.github.io/component-library/`
+
+Everything else at the repo root is project tooling or documentation.
+
 ## Where To Edit
 
 ### Homepage Bio + Image
@@ -60,6 +70,10 @@ Add images and captions here:
 Images should live in:
 - `/Users/isaacbenaka/Documents/GitHub/ikebenaka.github.io/site/images/`
 - `/Users/isaacbenaka/Documents/GitHub/ikebenaka.github.io/site/images/uploads/`
+
+Legacy assets that were previously in the repo root were moved to:
+- `/Users/isaacbenaka/Documents/GitHub/ikebenaka.github.io/site/images/legacy/`
+- `/Users/isaacbenaka/Documents/GitHub/ikebenaka.github.io/site/images/uploads/legacy/`
 
 Example entry:
 ```
