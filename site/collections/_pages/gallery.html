@@ -1,6 +1,28 @@
 ---
 _schema: default
 title: Gallery
-content_blocks:
-  -
+description: A selection of my drone photography
+content_blocks: []
 ---
+
+{% bookshop page-heading title=page.title description=page.description %}
+
+<section class="section gallery-section">
+  <div class="container">
+    {% if site.data.gallery.items and site.data.gallery.items.size > 0 %}
+      <div class="gallery-grid">
+        {% for item in site.data.gallery.items %}
+          {% assign alt_text = item.alt | default: item.caption | default: page.title %}
+          <figure class="gallery-grid__item">
+            <img loading="lazy" src="{{ item.image | relative_url }}" alt="{{ alt_text | escape }}">
+            {% if item.caption %}
+              <figcaption class="gallery-grid__caption">{{ item.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="gallery-empty">Gallery coming soon.</p>
+    {% endif %}
+  </div>
+</section>

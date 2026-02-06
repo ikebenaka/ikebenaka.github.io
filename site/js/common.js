@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =======================
   // Zoom Image
   ======================= */
-  const lightense = document.querySelector(".page img, .post img"),
-  imageLink = document.querySelectorAll(".page a img, .post a img");
+  const lightense = document.querySelector(".page img, .post img, .gallery-grid img"),
+  imageLink = document.querySelectorAll(".page a img, .post a img, .gallery-grid a img");
 
   if (imageLink) {
     for (var i = 0; i < imageLink.length; i++) imageLink[i].parentNode.classList.add("image-link");
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (lightense) {
-    Lightense(".page img:not(.no-lightense), .post img:not(.no-lightense)", {
+    Lightense(".page img:not(.no-lightense), .post img:not(.no-lightense), .gallery-grid img:not(.no-lightense)", {
     padding: 60,
     offset: 30
     });

@@ -8,6 +8,8 @@ menu__settings:
       url: '/projects/'
     - title: 'Blog'
       url: '/blog/'
+    - title: 'Gallery'
+      url: '/gallery/'
     - title: 'Pages'
       submenu:
       - url: '/about/'

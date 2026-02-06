@@ -1,0 +1,148 @@
+backend:
+  name: github
+  repo: ikebenaka/ikebenaka.github.io
+  branch: main
+
+media_folder: "site/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Settings"
+    files:
+      - name: "navigation"
+        label: "Navigation"
+        file: "site/_data/navigation.yml"
+        fields:
+          - label: "Logo Image"
+            name: "logo_image"
+            widget: "image"
+            required: false
+          - label: "Menu Settings"
+            name: "menu__settings"
+            widget: "object"
+            fields:
+              - label: "Menu Items"
+                name: "menu__items"
+                widget: "list"
+                fields:
+                  - label: "Title"
+                    name: "title"
+                    widget: "string"
+                  - label: "URL"
+                    name: "url"
+                    widget: "string"
+                    required: false
+                  - label: "Submenu"
+                    name: "submenu"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - label: "Title"
+                        name: "title"
+                        widget: "string"
+                      - label: "URL"
+                        name: "url"
+                        widget: "string"
+      - name: "home"
+        label: "Home Hero"
+        file: "site/_data/home.yml"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description (HTML)"
+                name: "description_html"
+                widget: "text"
+              - label: "Image"
+                name: "image"
+                widget: "image"
+              - label: "Image Alt Text"
+                name: "image_alt"
+                widget: "string"
+                required: false
+              - label: "Primary Button Text"
+                name: "cta_button"
+                widget: "string"
+              - label: "Primary Button Link"
+                name: "cta_button_link"
+                widget: "string"
+              - label: "Secondary Button Text"
+                name: "works_button"
+                widget: "string"
+              - label: "Secondary Button Link"
+                name: "works_button_link"
+                widget: "string"
+      - name: "gallery"
+        label: "Gallery"
+        file: "site/_data/gallery.yml"
+        fields:
+          - label: "Images"
+            name: "items"
+            widget: "list"
+            fields:
+              - label: "Image"
+                name: "image"
+                widget: "image"
+              - label: "Alt Text"
+                name: "alt"
+                widget: "string"
+                required: false
+              - label: "Caption"
+                name: "caption"
+                widget: "string"
+                required: false
+  - name: "projects"
+    label: "Projects"
+    folder: "site/collections/_projects"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Subtitle"
+        name: "subtitle"
+        widget: "string"
+        required: false
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+  - name: "posts"
+    label: "Posts"
+    folder: "site/collections/_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: false
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
