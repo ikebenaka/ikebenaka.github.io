@@ -2,7 +2,26 @@
 <div class="c-page">
 
 {% for block in include.content_blocks %}
-    {% bookshop block._bookshop_name bind=block %}
+    {% case block._bookshop_name %}
+      {% when "projects-section" %}
+        {% bookshop projects-section bind=block %}
+      {% when "blog-section" %}
+        {% bookshop blog-section bind=block %}
+      {% when "contact-form" %}
+        {% bookshop contact-form bind=block %}
+      {% when "page-heading" %}
+        {% bookshop page-heading bind=block %}
+      {% when "projects-list" %}
+        {% bookshop projects-list bind=block %}
+      {% when "posts-list" %}
+        {% bookshop posts-list bind=block %}
+      {% when "newsletter" %}
+        {% bookshop newsletter bind=block %}
+      {% when "page-image" %}
+        {% bookshop page-image bind=block %}
+      {% when "content" %}
+        {% bookshop content bind=block %}
+    {% endcase %}
 {% endfor %}
 
 </div>
