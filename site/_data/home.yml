@@ -1,10 +1,8 @@
 hero:
   title: Hey, I'm Isaac Benaka
   description_html: >-
-    <p><strong>Photographer</strong> and <strong>Visual Content Strategist</strong>
-    from Albany. I work as a lifestyle, product, and landscape photographer,
-    creating images for a diverse range of requests, from online media to printed
-    artwork.</p>
+    <p>Researcher and drone pilot working in NOAA Fisheries' Northeast Fisheries
+    Science Center.</p>
   image: /images/pics_of_me/headshot.JPG
   image_alt: Vanessa Marley's picture
   cta_button: Get in touch
