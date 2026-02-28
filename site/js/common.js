@@ -55,7 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =======================
   // Responsive Videos
   ======================= */
-  reframe(".post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off)");
+  if (typeof reframe === "function") {
+    reframe(".post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off)");
+  }
 
 
   /* =======================
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (var i = 0; i < imageLink.length; i++) imageLink[i].classList.add("no-lightense");
   }
 
-  if (lightense) {
+  if (lightense && typeof Lightense === "function") {
     Lightense(".page img:not(.no-lightense), .post img:not(.no-lightense), .gallery-grid img:not(.no-lightense)", {
     padding: 60,
     offset: 30
@@ -123,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ============================
   // Testimonials Slider
   ============================ */
-  if (document.querySelector(".my-slider")) {
+  if (document.querySelector(".my-slider") && typeof tns === "function") {
     var slider = tns({
       container: ".my-slider",
       items: 3,
@@ -151,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ============================
   // iTyped
   ============================ */
-  if (document.querySelector(".c-subscribe")) {
+  if (document.querySelector(".c-subscribe") && typeof ityped !== "undefined" && ityped && typeof ityped.init === "function") {
     var options = {
       strings: itype_text,
       typeSpeed: 100,

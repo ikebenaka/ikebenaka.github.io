@@ -31,6 +31,9 @@
   padding: 0;
   margin: 0;
   background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
   position: relative;
   border-radius: $global-radius;
   overflow: hidden;
