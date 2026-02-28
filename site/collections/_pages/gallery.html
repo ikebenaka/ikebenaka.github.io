@@ -16,14 +16,21 @@ content_blocks: []
           {% assign image_name = image.name | split: "." | first | replace: "_", " " %}
           {% assign alt_text = image_name | default: page.title %}
           <figure class="gallery-grid__item">
-            <img
-              class="gallery-grid__image"
-              loading="lazy"
-              src="{{ image.path | relative_url }}"
-              alt="{{ alt_text | escape }}">
-            <span class="gallery-grid__overlay" aria-hidden="true">
-              <i class="ion ion-ios-search"></i>
-            </span>
+            <button
+              class="gallery-grid__trigger"
+              type="button"
+              data-gallery-image="{{ image.path | relative_url }}"
+              data-gallery-alt="{{ alt_text | escape }}"
+              aria-label="View image: {{ alt_text | escape }}">
+              <img
+                class="gallery-grid__image no-lightense"
+                loading="lazy"
+                src="{{ image.path | relative_url }}"
+                alt="{{ alt_text | escape }}">
+              <span class="gallery-grid__overlay" aria-hidden="true">
+                <i class="ion ion-ios-search"></i>
+              </span>
+            </button>
           </figure>
         {% endfor %}
       </div>

@@ -76,6 +76,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  /* =======================
+  // Gallery Lightbox
+  ======================= */
+  const galleryTriggers = document.querySelectorAll(".gallery-grid__trigger");
+  if (galleryTriggers.length) {
+    const lightbox = document.createElement("div");
+    lightbox.className = "gallery-lightbox";
+    lightbox.innerHTML = '<div class="gallery-lightbox__dialog" role="dialog" aria-modal="true"><img class="gallery-lightbox__image" alt=""></div>';
+    document.body.appendChild(lightbox);
+
+    const lightboxImage = lightbox.querySelector(".gallery-lightbox__image");
+
+    function closeGalleryLightbox() {
+      lightbox.classList.remove("is-open");
+      document.body.classList.remove("gallery-lightbox-open");
+      lightboxImage.removeAttribute("src");
+      lightboxImage.setAttribute("alt", "");
+    }
+
+    galleryTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const imageSrc = trigger.getAttribute("data-gallery-image");
+        const imageAlt = trigger.getAttribute("data-gallery-alt") || "";
+        if (!imageSrc) return;
+        lightboxImage.setAttribute("src", imageSrc);
+        lightboxImage.setAttribute("alt", imageAlt);
+        lightbox.classList.add("is-open");
+        document.body.classList.add("gallery-lightbox-open");
+      });
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeGalleryLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+        closeGalleryLightbox();
+      }
+    });
+  }
+
   /* ============================
   // Testimonials Slider
   ============================ */
