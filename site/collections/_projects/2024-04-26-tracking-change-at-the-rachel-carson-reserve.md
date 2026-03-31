@@ -2,13 +2,13 @@
 date: 2024-04-26 12:00:00 +0000
 title: Tracking Change at the Rachel Carson Reserve
 subtitle: CEM Master's Project
-image: /images/projects/RCR/Figure9.jpg
+image: /images/projects/RCR/Cover.jpeg
 ---
 My master's project at Duke University examined how Bird Shoal and the broader Rachel Carson Reserve changed between 2017/2018 and 2023. I focused on the Rachel Carson Reserve, an inlet barrier island complex in North Carolina's Inner Banks on the Crystal Coast, just south of Beaufort and directly landward of Beaufort Inlet.
 
 This project sits at the intersection of coastal geomorphology, remote sensing, and applied management. In plain language, **geomorphology** is the study of landforms and how they change through processes like waves, tides, wind, and sediment movement. I wanted to understand how a protected-looking barrier island system was actually behaving over time, and what that could mean for habitat change and future management.
 
-*This master's project was submitted in partial fulfillment of the Master of Environmental Management degree at Duke University in April 2024. It was not peer reviewed or formally published.*
+*This master's project was submitted in partial fulfillment of the Master of Environmental Management degree at Duke University in April 2024. It was not peer reviewed or formally published. [Read the full project](https://dukespace.lib.duke.edu/server/api/core/bitstreams/919cb1a3-c0a4-4c56-9a6c-66d01718462e/content).*
 
 ## Why this place matters
 
@@ -17,8 +17,6 @@ Barrier islands are sandy landforms that help absorb storm energy and protect th
 Earlier research had suggested that Bird Shoal was no longer behaving like a typical **fetch-limited barrier island**, or FLBI. A fetch-limited barrier island usually sits in a relatively sheltered setting where day-to-day wave energy is low and major change is expected mostly during storms. Bird Shoal, however, appeared to be changing even outside of those expectations. My project tested that idea with a new survey and a broader look at how both landform and habitat were shifting across the Reserve.
 
 ![Study area map of the Rachel Carson Reserve and 2023 flight coverage.](/images/projects/RCR/Figure1.jpg)
-
-*Figure 1. The Rachel Carson Reserve study area, including Bird Shoal, Town Marsh, Carrot Island, and the 2023 drone survey coverage.*
 
 ## What I did
 
@@ -30,8 +28,6 @@ I combined drone mapping, elevation analysis, shoreline analysis, and habitat cl
 - I classified habitat across the Reserve using Sentinel-2 imagery informed by drone imagery, building on [Gray et al. (2018)](https://doi.org/10.3390/rs10081257), which provided the earlier habitat baseline for the Rachel Carson Reserve.
 
 ![Comparison of drone imagery and Sentinel-2 imagery used for habitat classification.](/images/projects/RCR/Figure2.jpg)
-
-*Figure 2. I used very high resolution drone imagery to guide habitat training areas, then applied those classes to coarser Sentinel-2 satellite imagery for the Reserve-wide habitat analysis.*
 
 ## What I found
 
@@ -46,8 +42,6 @@ The short version is that Bird Shoal was not simply eroding away. It was moving,
 
 ![Shoreline change transects across Bird Shoal from 2018 to 2023.](/images/projects/RCR/Figure4.jpg)
 
-*Figure 4. Shoreline change transects show that most of Bird Shoal migrated landward, even while some parts of the island accreted and the eastern end extended farther outward.*
-
 That combination of retreat, elongation, dune growth, overwash, and wetland expansion is why I describe Bird Shoal as behaving more like a **mixed-energy** barrier island than a classic sheltered FLBI. In other words, it appears to be shaped by both local sheltered-water processes and stronger ocean wave energy entering through Beaufort Inlet.
 
 ## Why I think that happened
@@ -57,8 +51,6 @@ My interpretation is that widening at Beaufort Inlet changed the way wave energy
 That helps explain why I found a landscape that was doing several things at once: retreating landward in many places, building dunes in others, extending eastward, and sending overwash sediment into lower areas behind the island. Those back-barrier deposits appear to be helping create conditions where marsh habitat can expand.
 
 ![Habitat classification maps of the Rachel Carson Reserve in 2017 and 2023.](/images/projects/RCR/Figure9.jpg)
-
-*Figure 9. The 2017 and 2023 habitat maps show that changes in Bird Shoal's shape were accompanied by broader habitat shifts across the Reserve, especially in marsh and sand-dominated areas.*
 
 ## Why it matters for management
 
