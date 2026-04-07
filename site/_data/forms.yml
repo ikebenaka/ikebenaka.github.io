@@ -1,0 +1,7 @@
+contact:
+  endpoint: ""
+
+newsletter:
+  endpoint: ""
+  fallback_email: ikebenaka@gmail.com
+  fallback_subject: Newsletter signup

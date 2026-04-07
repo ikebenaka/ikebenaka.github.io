@@ -13,11 +13,19 @@
             </div>
           </div>
 
-          <form class="{{c}}__form validate" action="//{{ include.newsletter_identifier }}"
-            method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+          <form class="{{c}}__form validate"
+            data-managed-form="newsletter"
+            data-endpoint="{{ site.data.forms.newsletter.endpoint | escape }}"
+            data-fallback-email="{{ site.data.forms.newsletter.fallback_email | escape }}"
+            data-fallback-subject="{{ site.data.forms.newsletter.fallback_subject | escape }}"
+            method="POST"
+            id="membedded-subscribe-form"
+            name="membedded-subscribe-form"
+            novalidate>
             <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
-            <input class="{{c}}__form-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="Your email address">
+            <input class="{{c}}__form-email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" required>
             <button class="c-button c-button--primary c-button--large" id="membedded-subscribe" type="submit" name="subscribe">{{ include.newsletter_button }}</button>
+            <p class="{{c}}__form-status" data-form-status aria-live="polite"></p>
           </form>
 
         </div>

@@ -1,0 +1,51 @@
+name: Notify Subscribers
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "site/collections/_posts/**"
+      - "site/collections/_projects/**"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.SUBSCRIBER_NOTIFY_ENDPOINT != '' && secrets.SUBSCRIBER_NOTIFY_TOKEN != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build notification payload
+        env:
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+          GITHUB_SHA: ${{ github.sha }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          NOTIFICATION_PAYLOAD_PATH: ${{ runner.temp }}/notification-payload.json
+        run: node scripts/build-notification-payload.mjs
+
+      - name: Notify subscribers
+        env:
+          NOTIFICATION_PAYLOAD_PATH: ${{ runner.temp }}/notification-payload.json
+          SUBSCRIBER_NOTIFY_ENDPOINT: ${{ secrets.SUBSCRIBER_NOTIFY_ENDPOINT }}
+          SUBSCRIBER_NOTIFY_TOKEN: ${{ secrets.SUBSCRIBER_NOTIFY_TOKEN }}
+        run: |
+          if [ ! -s "$NOTIFICATION_PAYLOAD_PATH" ]; then
+            echo "No payload file was generated."
+            exit 0
+          fi
+
+          if [ "$(jq '.items | length' "$NOTIFICATION_PAYLOAD_PATH")" -eq 0 ]; then
+            echo "No new published items detected."
+            exit 0
+          fi
+
+          jq --arg token "$SUBSCRIBER_NOTIFY_TOKEN" '. + {"action":"notify","token":$token}' "$NOTIFICATION_PAYLOAD_PATH" > "$RUNNER_TEMP/notify-request.json"
+
+          curl --fail-with-body \
+            --request POST \
+            --header "Content-Type: application/json" \
+            --data @"$RUNNER_TEMP/notify-request.json" \
+            "$SUBSCRIBER_NOTIFY_ENDPOINT"

@@ -1,6 +1,146 @@
 document.addEventListener("DOMContentLoaded", function () {
   'use strict';
 
+  function setFormStatus(statusNode, message, variant) {
+    if (!statusNode) return;
+    statusNode.textContent = message || "";
+    statusNode.classList.remove("is-error", "is-success");
+    if (variant) {
+      statusNode.classList.add(variant === "error" ? "is-error" : "is-success");
+    }
+  }
+
+  function buildMailtoUrl(email, subject, body) {
+    return "mailto:" + email +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+  }
+
+  function submitWithFallback(form, statusNode) {
+    var fallbackEmail = form.dataset.fallbackEmail;
+
+    if (!fallbackEmail) {
+      setFormStatus(statusNode, "This form is still being connected. Please try again soon.", "error");
+      return;
+    }
+
+    if (form.dataset.managedForm === "contact") {
+      var name = form.querySelector("[name='name']").value.trim();
+      var email = form.querySelector("[name='_replyto']").value.trim();
+      var message = form.querySelector("[name='text']").value.trim();
+      var contactBody = [
+        "Name: " + name,
+        "Email: " + email,
+        "",
+        message
+      ].join("\n");
+
+      window.location.href = buildMailtoUrl(
+        fallbackEmail,
+        "Website contact from " + name,
+        contactBody
+      );
+
+      setFormStatus(statusNode, "Your email app should open with this message prefilled.", "success");
+      return;
+    }
+
+    var subscriberEmail = form.querySelector("[name='EMAIL']").value.trim();
+    var newsletterSubject = form.dataset.fallbackSubject || "Newsletter signup";
+    var newsletterBody = "Please add this email to my website subscriber list:\n\n" + subscriberEmail;
+
+    window.location.href = buildMailtoUrl(fallbackEmail, newsletterSubject, newsletterBody);
+    setFormStatus(statusNode, "Your email app should open so you can finish subscribing.", "success");
+  }
+
+  function serializeManagedForm(form) {
+    if (form.dataset.managedForm === "contact") {
+      return {
+        action: "contact",
+        name: form.querySelector("[name='name']").value.trim(),
+        email: form.querySelector("[name='_replyto']").value.trim(),
+        message: form.querySelector("[name='text']").value.trim(),
+        source: window.location.pathname
+      };
+    }
+
+    return {
+      action: "subscribe",
+      email: form.querySelector("[name='EMAIL']").value.trim(),
+      source: window.location.pathname
+    };
+  }
+
+  function handleManagedForm(form) {
+    var statusNode = form.querySelector("[data-form-status]");
+    var submitButton = form.querySelector("button[type='submit']");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (!form.reportValidity()) {
+        setFormStatus(statusNode, "Please fill out the required fields first.", "error");
+        return;
+      }
+
+      var endpoint = form.dataset.endpoint;
+      var payload = serializeManagedForm(form);
+
+      if (!endpoint) {
+        submitWithFallback(form, statusNode);
+        return;
+      }
+
+      if (submitButton) submitButton.disabled = true;
+      setFormStatus(statusNode, "Sending...", null);
+
+      fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          return response.json().catch(function () {
+            return {};
+          });
+        })
+        .then(function (responseBody) {
+          if (responseBody && responseBody.ok === false) {
+            throw new Error(responseBody.message || "Request failed");
+          }
+
+          var successMessage = responseBody.message ||
+            (form.dataset.managedForm === "contact"
+              ? "Thanks for reaching out. Your message has been sent."
+              : "Thanks for subscribing. You will hear about new posts here.");
+
+          setFormStatus(statusNode, successMessage, "success");
+          form.reset();
+        })
+        .catch(function (error) {
+          if (endpoint) {
+            setFormStatus(
+              statusNode,
+              error && error.message ? error.message : "Something went wrong. Please try again.",
+              "error"
+            );
+            return;
+          }
+
+          submitWithFallback(form, statusNode);
+        })
+        .finally(function () {
+          if (submitButton) submitButton.disabled = false;
+        });
+    });
+  }
+
+  var managedForms = document.querySelectorAll("[data-managed-form]");
+  managedForms.forEach(handleManagedForm);
+
   /* =======================
   // Menu
   ======================= */

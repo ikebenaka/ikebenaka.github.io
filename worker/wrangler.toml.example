@@ -1,0 +1,13 @@
+name = "ikebenaka-subscriber-api"
+main = "subscriber-api.js"
+compatibility_date = "2026-04-06"
+
+[[kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "replace-with-your-kv-namespace-id"
+
+[vars]
+ALLOWED_ORIGIN = "https://your-domain.example"
+SITE_URL = "https://your-domain.example"
+CONTACT_TO_EMAIL = "ikebenaka@gmail.com"
+NOTIFY_FROM_EMAIL = "updates@your-domain.example"
