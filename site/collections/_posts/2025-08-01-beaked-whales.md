@@ -2,11 +2,12 @@
 date: 2025-08-01 19:30:00 +0000
 title: Chasing Beaked Whales on the Shelf Break
 description: >-
-Offshore drone photogrammetry at the shelf break captures a rare, close look at elusive goose-beaked whales.
+  Offshore drone photogrammetry at the shelf break captures a rare, close look
+  at elusive goose-beaked whales.
 tags:
-  - NOAA
-  - Drones
-  - Whales
+  - noaa
+  - drones
+  - whales
 image: /images/beaked_whales/DSC00072.JPG
 ---
 From July 3–17, 2025, I was part of a cetacean ecology survey aboard the NOAA Ship *Henry B. Bigelow*, working the shelf break south of Cape Cod in search of one of the hardest groups of whales to study in the North Atlantic: beaked whales.
@@ -54,4 +55,3 @@ It was an incredible opportunity to fly over these animals, especially after suc
 - [NOAA Fisheries stock assessment: Western North Atlantic Cuvier’s beaked whale](https://www.fisheries.noaa.gov/s3/2024-12/2023-sar-cuviers-beaked-whale-wna.pdf)
 - [NOAA Fisheries stock assessment: Western North Atlantic Sowerby’s beaked whale](https://www.fisheries.noaa.gov/s3/2024-12/2023-sar-sowerbys-beaked-whale-wna.pdf)
 - [NOAA Fisheries stock assessment: Western North Atlantic True’s beaked whale](https://www.fisheries.noaa.gov/s3/2024-12/2023-sar-trues-beaked-whale-wna.pdf)
-
