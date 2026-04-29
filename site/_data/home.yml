@@ -1,5 +1,5 @@
 hero:
-  title: Hey, I'm Isaac Benaka
+  title: Hey!<br>I'm Isaac Benaka
   description_html: >-
     <p>Researcher and drone pilot working in NOAA Fisheries' Northeast Fisheries
     Science Center.</p>
@@ -7,5 +7,5 @@ hero:
   image_alt: Vanessa Marley's picture
   cta_button: Get in touch
   cta_button_link: '#contact'
-  works_button: See my works
+  works_button: See my work
   works_button_link: '#projects'

@@ -5,7 +5,7 @@ description: >-
   Offshore drone photogrammetry at the shelf break captures a rare, close look
   at elusive goose-beaked whales.
 tags:
-  - noaa
+  - NOAA
   - drones
   - whales
 image: /images/beaked_whales/DSC00072.JPG

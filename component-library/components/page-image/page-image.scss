@@ -1,7 +1,12 @@
 .c-page-image {	
 	position: relative;
 	transform: translate(0);
-	padding-top: 56.25%;
+	width: 100%;
+	max-width: 780px;
+	aspect-ratio: 16 / 9;
+	padding-top: 0;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 48px;
 	min-height: 280px;
 	border-radius: 16px;
@@ -19,7 +24,6 @@
 	}
 
 	@media only screen and (max-width: $desktop) {
-		padding-top: 65%;
 		margin-bottom: 40px;
 	}
 

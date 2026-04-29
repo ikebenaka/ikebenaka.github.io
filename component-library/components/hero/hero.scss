@@ -33,7 +33,7 @@
 	}
 
 	&__left {
-		max-width: 510px;
+		max-width: 650px;
 		padding-right: 20px;
 		margin-right: auto;
 
@@ -98,6 +98,7 @@
 	&__title {
 		margin-bottom: 20px;
 		font-size: 58px;
+		line-height: 1.08;
 		color: $heading-font-color;
 
 		@media only screen and (max-width: 1130px) {
