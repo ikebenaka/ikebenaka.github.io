@@ -4,17 +4,37 @@ title: Mapping Elkhorn Coral with Drone Imagery and Deep Learning
 subtitle: TNC / Duke Master's Project
 image: /images/projects/TNC_Corals/hero-drone-reef.jpg
 ---
-During my master's work at Duke, I worked with The Nature Conservancy on a computer vision workflow for mapping elkhorn coral around St. Croix in the U.S. Virgin Islands. The goal was practical: restoration teams need better ways to measure where elkhorn coral is present, how much area it covers, and how those patterns change across reef sites. Doing that manually from high-resolution drone orthomosaics is slow, inconsistent, and difficult to scale.
+During my master's work at Duke, I worked with [The Nature Conservancy](https://www.nature.org/en-us/about-us/where-we-work/caribbean/) (TNC) on a computer vision workflow for mapping elkhorn coral around St. Croix in the U.S. Virgin Islands. Coral restoration teams at The Nature Conservancy's Caribbean Division need better ways to measure where elkhorn coral is present, how much area it covers, and how those patterns change across reef sites. Divers can only count coral in small sections of the reef, but what if elkhorn coral could be counted across the entire reef in drone imagery?
 
-This project explored whether drone imagery, GIS annotations, and deep learning could make that workflow faster.
+This project explored whether drone orthomosaics, GIS annotations, and deep learning could make that workflow faster.
 
 ![Drone imagery of shallow reef habitat near St. Croix.](/images/projects/TNC_Corals/drone-reef-detail.jpg)
 
+## St. Croix Data Collection
+
+In August 2023, a team from TNC's Caribbean Division collected drone imagery over reef tracts including Llew's Reef in the U.S. Virgin Islands using a [Wingtra Gen II fixed-wing mapping drone](https://wingtra.com/). I joined that team for a second field excursion in January 2024, where even more reef imagery was collected following a severe bleaching event.
+
+![Wingtra Gen II drone staged near the water before a reef mapping flight.](/images/projects/TNC_Corals/wingtra-gen-ii-field.jpeg)
+
+During my trip to St. Croix, I also got to see TNC's Coral Innovation Hub. The lab connects restoration work in the water with controlled, hands-on coral propagation on land. Small coral fragments and samples are maintained on labeled plugs and racks, where staff can track growth, health, genotype, and readiness for future restoration work. Seeing those small living samples in the lab made the remote-sensing problem feel much more concrete: the drone maps were not just images, they were a way to help restoration teams understand where this kind of careful propagation and outplanting work was needed most.
+
+![Small coral samples growing on labeled plugs and racks at TNC's Coral Innovation Hub.](/images/projects/TNC_Corals/coral-innovation-hub-samples.jpeg)
+
+St. Croix was an amazing place to visit and has vibrant natural beauty, from the island's dry hillsides and protected bays to the shallow reef systems that motivated this project.
+
+![View across the hills and coastline of St. Croix.](/images/projects/TNC_Corals/st-croix-overlook.jpg)
+
+I also visited Isaac Bay, one of the protected coastal areas on St. Croix's East End. That field context mattered because the project was never only about model performance. It was about whether geospatial tools could support real monitoring decisions in a place where reefs, coastlines, and restoration work are tightly connected.
+
+![Field visit near Isaac Bay on St. Croix.](/images/projects/TNC_Corals/isaac-bay-field-visit.jpeg)
+
+The drone images collected in 2023 were stitched into orthomosaics with [DroneDeploy](https://www.dronedeploy.com/). Unfortunately, large waves and white water due to poor weather conditions made building orthomosaics for the 2024 data challenging. The resulting orthomosaics from 2023 were detailed enough to identify coral colonies, but the files were large enough that manual review was not a realistic long-term solution.
+
 ## Why Elkhorn Coral?
 
-Elkhorn coral, *Acropora palmata*, is an endangered reef-building coral. Its branching structure creates habitat for reef organisms, contributes to reef growth, and helps buffer coastlines from wave energy. Around St. Croix, The Nature Conservancy has been involved in coral restoration work since 2012, but measuring restoration success across large reef areas remains a hard geospatial monitoring problem.
+[Elkhorn coral](https://www.fisheries.noaa.gov/species/elkhorn-coral), *Acropora palmata*, is an endangered reef-building coral and one of the most important corals in the Caribbean. Its branching structure creates habitat for reef organisms, contributes to reef growth, and helps buffer coastlines from wave energy. Around St. Croix, The Nature Conservancy has been involved in coral restoration work since 2012, but measuring restoration success across large reef areas remains a hard monitoring problem.
 
-In August 2023, our team collected drone imagery over reef tracts in the U.S. Virgin Islands using a Wingtra Gen II drone. Those images were stitched into orthomosaics with DroneDeploy. The resulting imagery was detailed enough to identify coral colonies, but the files were large enough that manual review was not a realistic long-term solution.
+Monitoring elkhorn coral from drone imagery is useful because it can expand the scale of observation without replacing the expertise of divers and restoration practitioners. A diver survey is still essential for confirming species, health, disease, bleaching, and fine-scale ecological condition. But drone imagery can cover much larger areas in a repeatable way, creating a spatial record that can be compared across years or after major events. If an automated workflow can flag likely elkhorn colonies, estimate colony footprints, and guide where humans should look more closely, restoration teams can spend less time searching through imagery and more time making management decisions.
 
 ![Sample drone images from the project dataset.](/images/projects/TNC_Corals/sample-drone-contact-sheet.jpg)
 
@@ -30,11 +50,11 @@ The core workflow combined GIS labeling with deep learning:
 6. Run inference on a subset of reef imagery.
 7. Compare detections against the imagery and model validation metrics.
 
-The tutorial notebook created for the class project walked through this workflow using ArcGIS Pro, `arcpy`, `arcgis.learn`, GeoPandas, Rasterio, Folium, and Matplotlib. It used a smaller orthomosaic subset so a user could train and run a model without needing to process a full 30 GB raster.
+The tutorial notebook created for the class project walked through this workflow using ArcGIS Pro, `arcpy`, [`arcgis.learn`](https://developers.arcgis.com/python/), GeoPandas, Rasterio, Folium, and Matplotlib. It used a smaller orthomosaic subset so a user could train and run a model without needing to process a full 30 GB raster.
 
 ## Training Data
 
-We digitized coral examples inside transects so the training data would include different depths and reef conditions. The classes were:
+My partner in this project, Nicholas School alum Hayden Dubniczki, and I digitized coral examples inside orthomosaic transects so the training data would include different depths and reef conditions. The classes were:
 
 - `Palmata`: elkhorn coral, *Acropora palmata*
 - `Millepora`: fire coral
@@ -48,19 +68,18 @@ The exported deep learning dataset contained 1,292 image chips. The mask counts 
 | Millepora | 335 |
 | Mounding | 112 |
 
-That class distribution mattered. The model saw many more examples of elkhorn coral than mounding coral, and the visual differences between coral classes were sometimes subtle in overhead drone imagery.
+The model saw many more examples of elkhorn coral than mounding coral, and the visual differences between coral classes were sometimes subtle in overhead drone imagery.
 
 ## Models Tested
 
-The project included experiments with Faster R-CNN and Mask R-CNN models in the ArcGIS deep learning toolset. Faster R-CNN is an object detector, while Mask R-CNN performs instance segmentation by producing a mask for each detected object. Mask R-CNN was especially relevant because coral area and colony footprint are often more useful than bounding boxes alone.
+The project included experiments with [Faster R-CNN](https://developers.arcgis.com/python/latest/guide/how-faster-rcnn-works/) and [Mask R-CNN](https://developers.arcgis.com/python/latest/guide/how-maskrcnn-works/) models in the ArcGIS deep learning toolset. Faster R-CNN is an object detector, while Mask R-CNN performs instance segmentation by producing a mask for each detected object. Mask R-CNN was especially relevant because coral area and colony footprint are often more useful than bounding boxes alone.
 
-The strongest model metadata I found in the project folder reported these average precision values:
+The Faster R-CNN model provided the strongest elkhorn detection score, while the Mask R-CNN model trailed behind it slightly.
 
 | Model | Palmata AP | Notes |
 | --- | ---: | --- |
 | Llew2_26_FasterRCNN | 0.701 | Best elkhorn detection score in the saved model metadata |
 | Trial4_MaskRCNN_Model | 0.661 | Better segmentation-oriented candidate |
-| Llew2_26_Wyatt_MaskRCNN | 0.515 | Lower elkhorn precision in this run |
 
 ![Faster R-CNN model sample results.](/images/projects/TNC_Corals/fasterrcnn-results.png)
 
@@ -72,11 +91,11 @@ The results were promising, but not reliable enough to treat as a finished ecolo
 
 Several details made this more difficult than a standard image classification problem.
 
-First, the imagery was geospatial and very large. A full orthomosaic could contain thousands of tiles, so the workflow had to preserve spatial reference while splitting rasters into manageable chunks.
+First, the imagery was very large. The orthomosaics we were working with could be split up into thousands of tiles, and the workflow had to preserve spatial reference while splitting rasters into manageable chunks.
 
 Second, the target object was biologically and visually messy. Elkhorn colonies vary in shape, color, and visibility. Their appearance changes with depth, water clarity, sun angle, substrate, and neighboring benthic cover.
 
-Third, the labels were expensive. Every training polygon required a human to inspect reef imagery and decide what class the coral belonged to. That makes class imbalance and annotation consistency real constraints, not just modeling details.
+Third, the labels were expensive. Every training polygon required a human to inspect reef imagery and decide what class the coral belonged to. Then, the spindly arms of the elkhorn coral had to be painstakingly digitized into segmentation training data. This made class imbalance and annotation consistency significant constraints.
 
 Finally, detection and segmentation have different ecological uses. Bounding boxes can help find candidate colonies quickly, but masks are more useful for estimating area. The more useful output was also harder to produce accurately.
 
@@ -86,11 +105,9 @@ Finally, detection and segmentation have different ecological uses. Bounding box
 
 ## Segment Anything Experiments
 
-Later project files also show experiments with Meta's Segment Anything Model using `samgeo`. That work explored automatic mask generation, tiling a full orthomosaic, converting masks back into GIS vector formats, and fine-tuning SAM-style workflows on coral masks.
+I also played around with [Meta's Segment Anything Model](https://segment-anything.com/) (SAM) using [`samgeo`](https://samgeo.gishub.org/) shortly after its mainstream release. This was a useful direction because SAM could generate object-like masks without the same fully supervised setup as the Mask R-CNN workflow. But it also surfaced a core issue: generic segmentation is not the same as ecological classification. A model can segment many reef objects while still not knowing which masks correspond to elkhorn coral.
 
-This was a useful direction because SAM could generate object-like masks without the same fully supervised setup. But it also surfaced a core issue: generic segmentation is not the same as ecological classification. A model can segment many reef objects while still not knowing which masks correspond to elkhorn coral.
-
-For this use case, the most promising direction would likely combine the two approaches: use broad segmentation to propose candidate objects, then classify or filter those candidates with coral-specific training data.
+As we reached the end of the project, I presumed that the most promising direction would likely combine the two approaches: use broad segmentation via SAM to propose candidate objects, then classify or filter those candidates with coral-specific training data via Faster R-CNN or Mask R-CNN.
 
 ## Takeaways
 
@@ -103,17 +120,6 @@ This project did not produce a production-ready coral monitoring model, but it d
 - inference outputs that could be brought back into GIS;
 - early experiments with foundation-model segmentation.
 
-The main lesson was that automating coral mapping is feasible, but the bottleneck is not only model architecture. It is the whole system: image quality, georeferencing, training-data design, annotation consistency, class balance, and how outputs will be checked by scientists and restoration teams.
+The main lesson was that automating coral mapping is feasible, but that there are several bottlenecks, including variable image quality, georeferencing, training-data design, annotation consistency, class balance, and how outputs will be checked by scientists and restoration teams.
 
 For me, the project was a useful bridge between conservation science and applied machine learning. It showed how computer vision can help with environmental monitoring, while also making clear that field context and GIS workflows matter as much as the model itself.
-
-## Project Artifacts
-
-- Tutorial notebook: `FinalProject_HD_IB/DLTutorial_ObjectDetection.ipynb`
-- SAM exploration notebook: `TNC_LlewsReef_igb8/SAM_Llews_.ipynb`
-- Model folders: `TNC_LlewsReef_igb8/Data/TNC Coral Mapping/Model`
-- Sample drone imagery: `TNC_LlewsReef_igb8/sample drone imagery`
-
-## Asset Notes
-
-The web images on this page are derivatives from the local project files. The hero and reef detail images come from sample drone imagery in `TNC_LlewsReef_igb8/sample drone imagery`; the contact sheet uses the first six `.jpg` files in that folder. The model result and loss images come from the saved `ModelCharacteristics` outputs for `Llew2_26_FasterRCNN` and `Trial4_MaskRCNN_Model`.
