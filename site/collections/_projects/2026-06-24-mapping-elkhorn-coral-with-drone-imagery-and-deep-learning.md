@@ -9,24 +9,24 @@ During my master's work at Duke, I worked with [The Nature Conservancy](https://
 This project explored whether drone orthomosaics, GIS annotations, and deep learning could make that workflow faster.
 
 ![Drone imagery of shallow reef habitat near St. Croix.](/images/projects/TNC_Corals/drone-reef-detail.jpg)
+*Drone imagery of shallow reef habitat near St. Croix.*
 
 ## St. Croix Data Collection
 
 In August 2023, a team from TNC's Caribbean Division collected drone imagery over reef tracts including Llew's Reef in the U.S. Virgin Islands using a [Wingtra Gen II fixed-wing mapping drone](https://wingtra.com/). I joined that team for a second field excursion in January 2024, where even more reef imagery was collected following a severe bleaching event.
 
 ![Wingtra Gen II drone staged near the water before a reef mapping flight.](/images/projects/TNC_Corals/wingtra-gen-ii-field.jpeg)
+*Wingtra Gen II drone staged near the water before a reef mapping flight.*
 
-During my trip to St. Croix, I also got to see TNC's Coral Innovation Hub. The lab connects restoration work in the water with controlled, hands-on coral propagation on land. Small coral fragments and samples are maintained on labeled plugs and racks, where staff can track growth, health, genotype, and readiness for future restoration work. Seeing those small living samples in the lab made the remote-sensing problem feel much more concrete: the drone maps were not just images, they were a way to help restoration teams understand where this kind of careful propagation and outplanting work was needed most.
+During my trip to St. Croix, I also got to see TNC's Coral Innovation Hub. The lab connects restoration work in the water with controlled, hands-on coral propagation on land. Small coral fragments and samples are maintained on labeled plugs and racks, where staff can track growth, health, genotype, and readiness for future restoration work. Seeing all the small living samples in the lab made me hopeful that the reef could continue on, even in the context of a recent bleaching event.
 
 ![Small coral samples growing on labeled plugs and racks at TNC's Coral Innovation Hub.](/images/projects/TNC_Corals/coral-innovation-hub-samples.jpeg)
+*Small coral samples growing on labeled plugs and racks at TNC's Coral Innovation Hub.*
 
 St. Croix was an amazing place to visit and has vibrant natural beauty, from the island's dry hillsides and protected bays to the shallow reef systems that motivated this project.
 
 ![View across the hills and coastline of St. Croix.](/images/projects/TNC_Corals/st-croix-overlook.jpg)
-
-I also visited Isaac Bay, one of the protected coastal areas on St. Croix's East End. That field context mattered because the project was never only about model performance. It was about whether geospatial tools could support real monitoring decisions in a place where reefs, coastlines, and restoration work are tightly connected.
-
-![Field visit near Isaac Bay on St. Croix.](/images/projects/TNC_Corals/isaac-bay-field-visit.jpeg)
+*View across the hills and coastline of St. Croix.*
 
 The drone images collected in 2023 were stitched into orthomosaics with [DroneDeploy](https://www.dronedeploy.com/). Unfortunately, large waves and white water due to poor weather conditions made building orthomosaics for the 2024 data challenging. The resulting orthomosaics from 2023 were detailed enough to identify coral colonies, but the files were large enough that manual review was not a realistic long-term solution.
 
@@ -37,6 +37,7 @@ The drone images collected in 2023 were stitched into orthomosaics with [DroneDe
 Monitoring elkhorn coral from drone imagery is useful because it can expand the scale of observation without replacing the expertise of divers and restoration practitioners. A diver survey is still essential for confirming species, health, disease, bleaching, and fine-scale ecological condition. But drone imagery can cover much larger areas in a repeatable way, creating a spatial record that can be compared across years or after major events. If an automated workflow can flag likely elkhorn colonies, estimate colony footprints, and guide where humans should look more closely, restoration teams can spend less time searching through imagery and more time making management decisions.
 
 ![Sample drone images from the project dataset.](/images/projects/TNC_Corals/sample-drone-contact-sheet.jpg)
+*Sample drone images from the project dataset.*
 
 ## The Workflow
 
@@ -82,8 +83,10 @@ The Faster R-CNN model provided the strongest elkhorn detection score, while the
 | Trial4_MaskRCNN_Model | 0.661 | Better segmentation-oriented candidate |
 
 ![Faster R-CNN model sample results.](/images/projects/TNC_Corals/fasterrcnn-results.png)
+*Faster R-CNN model sample results.*
 
 ![Mask R-CNN model sample results.](/images/projects/TNC_Corals/maskrcnn-results.png)
+*Mask R-CNN model sample results.*
 
 The results were promising, but not reliable enough to treat as a finished ecological monitoring product. The best elkhorn precision was near the rough threshold we considered useful, but performance across coral classes remained uneven.
 
@@ -100,8 +103,10 @@ Third, the labels were expensive. Every training polygon required a human to ins
 Finally, detection and segmentation have different ecological uses. Bounding boxes can help find candidate colonies quickly, but masks are more useful for estimating area. The more useful output was also harder to produce accurately.
 
 ![Faster R-CNN training loss graph.](/images/projects/TNC_Corals/fasterrcnn-loss.png)
+*Faster R-CNN training loss graph.*
 
 ![Mask R-CNN training loss graph.](/images/projects/TNC_Corals/maskrcnn-loss.png)
+*Mask R-CNN training loss graph.*
 
 ## Segment Anything Experiments
 
